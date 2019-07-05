@@ -1,20 +1,17 @@
 import { Component } from '@angular/core';
+import { BehaviorSubject } from 'rxjs';
 
 @Component({
   selector: 'app-root',
   template: `
-    <counter></counter>
-    <button (click)="onClick()">Trigger change detection</button>
+    <button (click)="add()">Add</button>
+    <app-todos [todos]="todos"></app-todos>
   `
 })
 export class AppComponent {
-  config = {
-    position: 'top'
-  };
+  todos = [{ title: 'One' }, { title: 'Two' }];
 
-  onClick() {
-    this.config = {
-      position: 'bottom'
-    };
+  add() {
+    this.todos = [...this.todos, { title: 'Three' }];
   }
 }
