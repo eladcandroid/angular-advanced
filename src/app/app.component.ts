@@ -3,7 +3,7 @@ import { Component } from '@angular/core';
 @Component({
   selector: 'app-root',
   template: `
-    <tooltip [config]="config"></tooltip>
+    <counter></counter>
     <button (click)="onClick()">Trigger change detection</button>
   `
 })
