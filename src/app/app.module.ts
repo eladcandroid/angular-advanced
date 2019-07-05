@@ -6,6 +6,7 @@ import { HelloComponent } from './hello/hello.component';
 import { TooltipComponent } from './tooltip/tooltip.component';
 import { CounterComponent } from './counter/counter.component';
 import { TodosComponent } from './todos/todos.component';
+import { TodoComponent } from './todo/todo.component';
 
 @NgModule({
   declarations: [
@@ -13,7 +14,8 @@ import { TodosComponent } from './todos/todos.component';
     HelloComponent,
     TooltipComponent,
     CounterComponent,
-    TodosComponent
+    TodosComponent,
+    TodoComponent
   ],
   imports: [BrowserModule],
   providers: [],

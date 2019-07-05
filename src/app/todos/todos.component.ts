@@ -10,7 +10,7 @@ import {
   template: `
     <div style="border: 10px solid #82faad">
       <div *ngFor="let todo of todos">
-        {{ todo.title }} {{ runChangeDetection }}
+        <app-todo [todo]="todo"></app-todo>
       </div>
     </div>
   `,
@@ -18,9 +18,4 @@ import {
 })
 export class TodosComponent {
   @Input() todos;
-
-  get runChangeDetection() {
-    console.log('TodosComponent - Checking the view');
-    return '';
-  }
 }
