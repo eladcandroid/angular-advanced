@@ -1,4 +1,4 @@
-import { Component, ChangeDetectionStrategy } from '@angular/core';
+import { Component, ChangeDetectionStrategy, ChangeDetectorRef } from '@angular/core';
 
 @Component({
   selector: 'counter',
@@ -13,12 +13,11 @@ import { Component, ChangeDetectionStrategy } from '@angular/core';
 export class CounterComponent {
   count = 0;
 
-  constructor() {
-    setTimeout(() => (this.count = 5), 0);
-
-    setInterval(() => (this.count = 5), 100);
-
-    Promise.resolve().then(() => (this.count = 5));
+  constructor(private cdr: ChangeDetectorRef) {
+    setTimeout(() => {
+      this.count = 5;
+      this.cdr.detectChanges();
+    }, 1000);
 
     // AND ALSO WHEN WE CALL API
     // this.http.get('https://count.com').subscribe(res => {
