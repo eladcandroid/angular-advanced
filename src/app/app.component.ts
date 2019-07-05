@@ -13,6 +13,8 @@ export class AppComponent {
   };
 
   onClick() {
-    this.config.position = 'bottom';
+    this.config = {
+      position: 'bottom'
+    };
   }
 }
