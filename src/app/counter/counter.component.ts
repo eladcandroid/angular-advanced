@@ -1,31 +1,47 @@
-import { Component, ChangeDetectionStrategy, ChangeDetectorRef } from '@angular/core';
+import {
+  Component,
+  ChangeDetectionStrategy,
+  ChangeDetectorRef
+} from '@angular/core';
+import { Increment, Decrement, Reset } from './counter.actions';
+import { Store } from '@ngrx/store';
+import { Observable } from 'rxjs';
+import * as fromStore from '../reducers/index';
 
 @Component({
-  selector: 'counter',
+  selector: 'app-counter',
   template: `
-    <div style="border: 10px solid #82faad">
-      <button (click)="add()">Add</button><br />
-      COUNT: {{ count }}
+    <div>
+      <button (click)="increment()">Increment</button>
+
+      <div>
+        Current Count: {{ counter$ | async }}
+        <button (click)="reset()">Reset Counter</button>
+      </div>
+
+      <button (click)="decrement()">Decrement</button>
     </div>
   `,
   changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class CounterComponent {
-  count = 0;
+  counter$: Observable<number>;
 
-  constructor(private cdr: ChangeDetectorRef) {
-    setTimeout(() => {
-      this.count = 5;
-      this.cdr.detectChanges();
-    }, 1000);
+  constructor(private store: Store<fromStore.State>) {}
 
-    // AND ALSO WHEN WE CALL API
-    // this.http.get('https://count.com').subscribe(res => {
-    //   this.count = res;
-    // });
+  ngOnInit() {
+    this.counter$ = this.store.select('counter');
   }
 
-  add() {
-    this.count++;
+  increment() {
+    this.store.dispatch(new Increment());
+  }
+
+  decrement() {
+    this.store.dispatch(new Decrement());
+  }
+
+  reset() {
+    this.store.dispatch(new Reset());
   }
 }

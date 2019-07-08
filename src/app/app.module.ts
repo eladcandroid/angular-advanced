@@ -2,22 +2,22 @@ import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 
 import { AppComponent } from './app.component';
-import { HelloComponent } from './hello/hello.component';
-import { TooltipComponent } from './tooltip/tooltip.component';
 import { CounterComponent } from './counter/counter.component';
-import { TodosComponent } from './todos/todos.component';
-import { TodoComponent } from './todo/todo.component';
+import { StoreModule } from '@ngrx/store';
+import { reducers, metaReducers } from './reducers';
+import { StoreDevtoolsModule } from '@ngrx/store-devtools';
+import { environment } from '../environments/environment';
+import * as fromCounter from './counter/counter.reducer';
 
 @NgModule({
   declarations: [
     AppComponent,
-    HelloComponent,
-    TooltipComponent,
     CounterComponent,
-    TodosComponent,
-    TodoComponent
   ],
-  imports: [BrowserModule],
+  imports: [BrowserModule,
+    StoreModule.forRoot(reducers, { metaReducers }),
+    StoreDevtoolsModule.instrument({ maxAge: 25, logOnly: environment.production }),
+  ],
   providers: [],
   bootstrap: [AppComponent]
 })

@@ -115,6 +115,10 @@
           }
         }
       }
-    }},
-  "defaultProject": "changedetection"
+    }
+  },
+  "defaultProject": "changedetection",
+  "cli": {
+    "defaultCollection": "@ngrx/schematics"
+  }
 }
