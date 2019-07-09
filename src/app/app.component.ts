@@ -1,14 +1,18 @@
-import { Component } from '@angular/core';
+import { Component, ɵrenderComponent } from '@angular/core';
 
 @Component({
   selector: 'app-root',
   template: `
     <div style="border: 10px solid green; padding: 10px;">
-      <a routerLink="/">Home</a> | <a routerLink="/feature">Feature</a>
+      <button (click)="loadFeature()">Load Feature</button>
     </div>
-    <router-outlet></router-outlet>
+    <feature></feature>
   `
 })
 export class AppComponent {
-  onClick() {}
+  loadFeature() {
+    import('./feature/feature.component').then(({ FeatureComponent }) => {
+      ɵrenderComponent(FeatureComponent);
+    });
+  }
 }
