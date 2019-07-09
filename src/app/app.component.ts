@@ -4,13 +4,11 @@ import { Component } from '@angular/core';
   selector: 'app-root',
   template: `
     <div style="border: 10px solid green; padding: 10px;">
-      <hello></hello>
-      <br />
-      <button (click)="onClick()">Trigger change detection</button>
+      <a routerLink="/">Home</a> | <a routerLink="/feature">Feature</a>
     </div>
+    <router-outlet></router-outlet>
   `
 })
 export class AppComponent {
-  title = 'changedetection';
   onClick() {}
 }
